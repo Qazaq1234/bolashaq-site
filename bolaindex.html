@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<title>Болашақ үшін | Premium STEM</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: "Segoe UI", Arial;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  color: #fff;
+}
+
+.container {
+  max-width: 420px;
+  margin: 30px auto;
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(12px);
+  border-radius: 18px;
+  padding: 25px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+.logo {
+  text-align: center;
+  font-size: 26px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.subtitle {
+  text-align: center;
+  font-size: 14px;
+  opacity: 0.8;
+  margin-bottom: 20px;
+}
+
+input, select {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 10px;
+  border: none;
+  font-size: 15px;
+}
+
+.qr-box {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.qr-box img {
+  width: 200px;
+  border-radius: 12px;
+  background: white;
+  padding: 10px;
+}
+
+.price {
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.whatsapp-btn {
+  width: 100%;
+  margin-top: 20px;
+  padding: 15px;
+  font-size: 18px;
+  background: linear-gradient(135deg, #25D366, #1ebe5d);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.whatsapp-btn:hover {
+  opacity: 0.9;
+}
+
+.footer {
+  text-align: center;
+  font-size: 12px;
+  opacity: 0.6;
+  margin-top: 15px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <div class="logo">
+    <img src="logo.png" alt="Болашақ үшін" style="width:200px;">
+  </div>
+  <div class="subtitle">STEM · Робототехника · Ғылым</div>
+</div>
+
+  <input id="parent" placeholder="Ата-ананың аты">
+  <input id="child" placeholder="Баланың аты-жөні">
+  <input id="age" type="number" placeholder="Баланың жасы">
+
+  <select id="course" onchange="updatePrice()">
+    <option value="Робототехника">Робототехника</option>
+    <option value="Химия">Химия</option>
+    <option value="Биология">Биология</option>
+  </select>
+
+  <div class="qr-box">
+    <p>Kaspi арқылы төлеңіз</p>
+    <img src="kaspi_qr.jpg" alt="Kaspi QR">
+    <div class="price" id="price">Пробный сабақ — 3 200 ₸</div>
+  </div>
+
+  <button class="whatsapp-btn" onclick="sendWA()">
+    Чекті WhatsApp-қа жіберу
+  </button>
+
+  <div class="footer">
+    Төлемнен кейін чекті жіберу жеткілікті
+  </div>
+</div>
+
+<script>
+function updatePrice() {
+  var course = document.getElementById("course").value;
+  var priceText = "";
+  
+  if(course === "Робототехника") priceText = "Пробный сабақ — 3 200 ₸";
+  if(course === "Химия") priceText = "Пробный сабақ — 8 000 ₸";
+  if(course === "Биология") priceText = "Пробный сабақ — 8 000 ₸";
+  
+  document.getElementById("price").innerText = priceText;
+}
+
+function sendWA() {
+  var parent = document.getElementById("parent").value;
+  var child = document.getElementById("child").value;
+  var age = document.getElementById("age").value;
+  var course = document.getElementById("course").value;
+
+  var text =
+    "Сәлеметсіз бе!%0A%0A" +
+    "Пробный сабаққа тіркелдік:%0A" +
+    "Ата-ана: " + parent + "%0A" +
+    "Бала: " + child + "%0A" +
+    "Жасы: " + age + "%0A" +
+    "Пән: " + course + "%0A%0A" +
+    "Kaspi арқылы төледік, чек тіркелді.";
+
+  var phone = "77770922686"; // ← Өз WhatsApp нөмірің
+
+  window.open("https://wa.me/" + phone + "?text=" + text, "_blank");
+}
+</script>
+
+</body>
+</html>
+
